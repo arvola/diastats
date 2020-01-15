@@ -1,4 +1,4 @@
-# diabets
+# diastats
 
 A simple web app for displaying combined charts for data from Dexcom, Freestyle and other sources.
 
