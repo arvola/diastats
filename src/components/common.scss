@@ -1,0 +1,9 @@
+@media print {
+    .is-hidden-print {
+        display: none !important;
+    }
+
+    .apexcharts-toolbar {
+        display: none !important;
+    }
+}
