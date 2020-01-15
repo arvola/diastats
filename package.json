@@ -1,5 +1,5 @@
 {
-  "name": "diabets",
+  "name": "diastats",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,26 +8,26 @@
   },
   "dependencies": {
     "bluebird": "3.7.2",
-    "change-case": "4.1.0",
-    "buefy": "0.8.8",
-    "vue": "^2.6.10",
-    "vue-class-component": "^7.0.2",
-    "vue-property-decorator": "^8.3.0",
+    "change-case": "4.1.1",
+    "buefy": "0.8.9",
+    "vue": "2.6.11",
+    "vue-class-component": "7.2.2",
+    "vue-property-decorator": "8.3.0",
     "idb": "4.0.5",
-    "papaparse": "5.1.0",
+    "papaparse": "5.1.1",
     "moment": "2.24.0",
-    "apexcharts": "3.14.0",
+    "apexcharts": "3.15.0",
     "vue-apexcharts": "1.5.2"
   },
   "devDependencies": {
-    "@types/bluebird-global": "^3.5.12",
-    "@types/papaparse": "5.0.2",
-    "@vue/cli-plugin-typescript": "^4.0.0",
-    "@vue/cli-service": "^4.0.0",
-    "node-sass": "^4.12.0",
-    "sass-loader": "^8.0.0",
-    "typescript": "~3.5.3",
-    "vue-template-compiler": "^2.6.10",
+    "@types/bluebird-global": "3.5.12",
+    "@types/papaparse": "5.0.3",
+    "@vue/cli-plugin-typescript": "4.1.2",
+    "@vue/cli-service": "4.1.2",
+    "node-sass": "4.13.0",
+    "sass-loader": "8.0.2",
+    "typescript": "3.7.4",
+    "vue-template-compiler": "2.6.11",
     "prettier": "1.19.1"
   },
   "postcss": {
