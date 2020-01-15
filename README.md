@@ -1,5 +1,7 @@
 # diabets
 
+A simple web app for displaying combined charts for data from Dexcom, Freestyle and other sources.
+
 ## Project setup
 ```
 npm install
@@ -14,6 +16,3 @@ npm run serve
 ```
 npm run build
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
