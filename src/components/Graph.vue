@@ -1,14 +1,8 @@
 <template>
     <section class="graph-section section section-content is-paddingless">
-        <div class="columns is-centered has-text-centered is-marginless date-arrows">
-            <div class="column is-2 is-paddingless is-hidden-print">
-                <b-button @click="datesBack" icon-right="arrow-left" size="is-large" type="is-text" />
-            </div>
+        <div class="columns is-centered has-text-centered is-marginless">
             <div class="column is-4 is-paddingless dates-column">
                 {{ dates }}
-            </div>
-            <div class="column is-2 is-paddingless is-hidden-print">
-                <b-button @click="datesForward" icon-right="arrow-right" size="is-large" type="is-text" />
             </div>
         </div>
         <apexchart width="100%" :height="height" type="line" :options="chartOptions" :series="series"></apexchart>
@@ -29,6 +23,7 @@
     })
     export default class Graph extends Vue {
         @Prop({ default: "" }) readonly height!: string;
+        @Prop({ default: true }) readonly showDates!: boolean;
 
         from: Date = moment()
             .subtract(3, "days")
@@ -42,6 +37,9 @@
 
         chartOptions: ApexOptions = {
             chart: {
+                animations: {
+                    enabled: false
+                },
                 stacked: false,
                 zoom: {
                     type: "x",
@@ -121,17 +119,6 @@
 
         private store: Promise<Data> = openDb().then(it => new Data(it));
 
-        setDates(to: any, days: number = 1) {
-            let m = moment(to)
-                .endOf("day")
-                .add(3, "hours");
-            let toDate = m.toDate();
-            this.from = m.subtract(days, "days").toDate();
-            this.to = toDate;
-
-            console.log(`${this.from} to ${this.to}`);
-        }
-
         get dates() {
             let from = moment(this.from);
             let to = moment(this.to);
@@ -158,12 +145,12 @@
             );
 
             let dexcomData: [Date, number | null][] = [];
-            
+
             let prev: moment.Moment | null = null;
             dexcomGlucose.forEach(it => {
                 let current = moment(it.timestamp);
-                if (prev && prev.diff(current, 'minutes') < -10) {
-                    dexcomData.push([prev.add(1, 'minute').toDate(), null]);
+                if (prev && prev.diff(current, "minutes") < -10) {
+                    dexcomData.push([prev.add(1, "minute").toDate(), null]);
                 }
                 prev = current;
                 dexcomData.push([it.timestamp, it.value]);
@@ -171,11 +158,11 @@
 
             let dexcomLast = dexcomData[dexcomData.length - 1];
 
-            if (moment(dexcomLast[0]).diff(this.to, 'minutes') < -10) {
+            if (moment(dexcomLast[0]).diff(this.to, "minutes") < -10) {
                 dexcomData.push([this.to, null]);
             }
 
-            console.log('Got data, rendering series');
+            console.log("Got data, rendering series");
 
             this.series = [
                 {
@@ -315,19 +302,6 @@
                 }
             };
         }
-
-        async datesForward() {
-            let diff = this.to.getTime() - this.from.getTime();
-            this.from = this.to;
-            this.to = new Date(this.to.getTime() + diff);
-        }
-
-        async datesBack() {
-            let diff = this.to.getTime() - this.from.getTime();
-            let to = this.from;
-            this.from = new Date(to.getTime() - diff);
-            this.to = to;
-        }
     }
 </script>
 
@@ -341,13 +315,8 @@
             color: $light;
         }
     }
-
-    .date-arrows {
-        margin-top: 5px;
-    }
-
     .dates-column {
-        line-height: 55px;
+        line-height: 45px;
         font-size: 18px;
     }
 </style>
