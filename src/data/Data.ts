@@ -204,14 +204,14 @@ export default class Data {
                     info: ""
                 });
             }
-            if (row.basalInjectionUnits) {
+            if (row.mealCarbohydrates) {
                 await this.db.put('entries', {
                     id: "mysugr-" + timestamp.getTime() + "-carbs",
                     deviceType,
                     device: "",
                     timestamp,
                     transmitterId: "",
-                    value: Math.round(parseInt(row.mealCarbohydrates) * 15),
+                    value: Math.round(parseInt(row.mealCarbohydrates)),
                     type: "carbs",
                     info: ""
                 });

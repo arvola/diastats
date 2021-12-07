@@ -110,8 +110,8 @@
                 }
             },
             yaxis: {
-                min: 60,
-                max: 200,
+                min: 50,
+                max: 220,
                 tickAmount: 14
             }
         };
@@ -189,10 +189,7 @@
                         strokeDashArray: 0,
                         borderColor: "#7aa623"
                     };
-                    if (it.value === 15 || it.value === 30) {
-                        ann.borderColor = "#30db16";
-                        ann.strokeDashArray = 5;
-                    } else if (it.value === 4 || it.value === 8 || it.value === 12 || it.value === 16) {
+                    if (it.deviceType === "dexcom") {
                         ann.borderColor = "#30db16";
                         ann.strokeDashArray = 5;
                         labelBorder = "#333";
