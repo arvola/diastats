@@ -11,9 +11,6 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "types": [
-      "bluebird-global"
-    ],
     "paths": {
       "@/*": [
         "src/*"

@@ -23,7 +23,7 @@ export default class Data {
         } else if (last.hasOwnProperty('date')
             && last.hasOwnProperty('time')
             && last.hasOwnProperty('tags')
-            && last.hasOwnProperty('bloodGlucoseMeasurement')) {
+            && last.hasOwnProperty('bloodSugarMeasurement')) {
             console.log('mySugr type detected');
             type = 'mySugr'
             await this.addMySugr(data);
@@ -168,14 +168,14 @@ export default class Data {
         for (let row of data) {
             let timestamp = moment(row.date + " " + row.time).toDate();
             let type: string;
-            if (row.bloodGlucoseMeasurement) {
+            if (row.bloodSugarMeasurement) {
                 await this.db.put('entries', {
                     id: "mysugr-" + timestamp.getTime() + "-glucose",
                     deviceType,
                     device: "",
                     timestamp,
                     transmitterId: "",
-                    value: parseInt(row.bloodGlucoseMeasurement),
+                    value: parseInt(row.bloodSugarMeasurement),
                     type: "glucose",
                     info: ""
                 });
@@ -241,7 +241,7 @@ interface MySugrData {
     date: string,
     time: string,
     tags: string,
-    bloodGlucoseMeasurement: string,
+    bloodSugarMeasurement: string,
     insulinInjectionUnits: string,
     basalInjectionUnits: string,
     insulin: string,

@@ -62,7 +62,8 @@
                     colors: ["#fff"]
                 },
                 background: {
-                    enabled: false
+                    enabled: false,
+                    dropShadow: {}
                 }
             },
             // @ts-ignore incorrect typings in the library
